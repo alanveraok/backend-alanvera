@@ -30,11 +30,11 @@ class ProductManager {
     getProductById(idProduct) {
         const product = this.products.find((prod) => prod.id === idProduct)   //mejor usar find() que map()   
         if(product){      
-         console.log("PRODUCT FOUND")      
+         console.log("PRODUCT FOUND!")      
          console.log(product)      
          return product      
         }else{      
-         console.log("PRODUCT NOT FOUND")      
+         console.log("PRODUCT NOT FOUND!")      
          return []
       
         }

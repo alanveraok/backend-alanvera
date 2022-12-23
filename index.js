@@ -5,49 +5,57 @@ class ProductManager {
         this.products = []
     }
 
-    addProduct(title, description,price, thumbnail,stock, code) {
-               if (title && description && price && thumbnail && stock & code) {
-            const existingCode = this.products.map(p => p.code).includes(code);
-            if (existingCode) {
-                console.log('Visible code')
-            } else {
-                this.products.push({
-                    id: this.products.lenght,
-                    title: "test product",
-                    description: "this is a test product",
-                    price: 200,
-                    thumbnail: "No image",
-                    stock: 10,
-                    code
-                })
-            }
-        } else {
-            console.log('ERROR: missing values')
-        }
-
-    }    
-
-    getProductById(idProduct) {
-        const product = this.products.find((prod) => prod.id === idProduct)   //mejor usar find() que map()   
-        if(product){      
-         console.log("PRODUCT FOUND!")      
-         console.log(product)      
-         return product      
-        }else{      
-         console.log("PRODUCT NOT FOUND!")      
-         return []
-      
-        }
-      
-       }
     getProducts(){
         return this.products
     }
 
+    addProduct({title, description, price, thumbnail, code, stock}) {
+        const foundProduct = this.products.find((product)=> product.title === title || product.code === code)
+            if(foundProduct){
+                console.log(`Product already exists ${title} - ${code}`)
+            } else{
+                const id = this.products.length + 1
+                this.products.push({id, title, description, price, thumbnail, code, stock})
+            }
+
+    }    
+
+    getProductById(id) {
+        const foundProduct = this.products.find((product) => product.id === id)   //mejor usar find() que map()   
+        if(foundProduct){      
+         console.log("PRODUCT FOUND!")      
+         console.log(foundProduct)      
+         return foundProduct      
+        }else{      
+         console.log("PRODUCT NOT FOUND!")     
+        }     
+       }
+ 
+
 }
 
 const productManager = new ProductManager()
-productManager.addProduct('title', 'description', 'price', 'thumbnail', 'code', 'stock')
-productManager.addProduct("producto prueba", "esto es un producto prueba", 200, "Sin imagen", "abc123", 25)
-productManager.getProductById()
-productManager.getProducts()
+
+//ops//
+const newProduct1 = {
+    title: 'P1',
+    description: 'D1',
+    price: 'P1',
+    thumbnail: 'T1',
+    code : 'C1',
+    stock: 'S1'
+}
+
+const newProduct2 = {
+    title: 'P2',
+  description: 'D2',
+  price: 'P2',
+  thumbnail: 'T2',
+  code : 'C2',
+  stock: 'S2'
+
+}
+productManager.addProduct(newProduct1)
+productManager.addProduct(newProduct2)
+
+console.log(productManager.getProductById(3))

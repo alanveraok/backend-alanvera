@@ -47,7 +47,7 @@ const newProduct1 = {
 }
 
 const newProduct2 = {
-    title: 'P2',
+title: 'P2',
   description: 'D2',
   price: 'P2',
   thumbnail: 'T2',
@@ -58,4 +58,4 @@ const newProduct2 = {
 productManager.addProduct(newProduct1)
 productManager.addProduct(newProduct2)
 
-console.log(productManager.getProductById(3))
+console.log(productManager.getProductById(1))
